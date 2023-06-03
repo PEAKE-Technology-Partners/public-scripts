@@ -2,7 +2,12 @@ $MODEL = Get-CimInstance -ClassName Win32_BIOS | Select-Object Manufacturer;
 if($MODEL -like '*Dell*') {
 #Install Dell Command Update
 %programdata%\chocolatey\choco.exe install dellcommandupdate-uwp -y
-"%ProgramFiles%\Dell\CommandUpdate\dcu-cli.exe" /configure -userConsent=disable -lockSettings=enable -autoSuspendBitLocker=enable -silent -scheduleWeekly=Mon,16:45  -scheduleAction=DownloadInstallAndNotify
+
+$dcuCliPath = "${env:ProgramFiles}\Dell\CommandUpdate\dcu-cli.exe"
+$arguments = '/configure', '-userConsent=disable', '-lockSettings=enable', '-autoSuspendBitLocker=enable', '-silent', '-scheduleWeekly=Mon,16:45', '-scheduleAction=DownloadInstallAndNotify'
+Start-Process -FilePath $dcuCliPath -ArgumentList $arguments -Wait
+
+
 if (Test-Path -Path "HKLM:\SOFTWARE\Dell\UpdateService\Clients\CommandUpdate\Preferences\CFG") {[void](New-ItemProperty -Path "HKLM:\SOFTWARE\Dell\UpdateService\Clients\CommandUpdate\Preferences\CFG" -Name "ShowSetupPopup" -Value 0 -PropertyType DWord -Force)}
 
 } elseif ($MODEL -like '*Lenovo*') {
