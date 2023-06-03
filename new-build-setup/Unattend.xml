@@ -68,11 +68,10 @@
       <TimeZone>Eastern Standard Time</TimeZone>
       <RegisteredOwner>Windows User</RegisteredOwner>
       <LogonCommands>
-        <AsynchronousCommand wcm:action="add">
-          <CommandLine>powershell Set-ExecutionPolicy Unrestricted -Force; iex (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/PEAKE-Technology-Partners/public-scripts/main/new-build-setup/drivers.ps1").Content</CommandLine>
-          <Description>Executing First Commands1</Description>
-          <Order>1</Order>
-        </AsynchronousCommand>
+      <RunSynchronousCommand wcm:action="add">
+      <Order>1</Order>
+      <Path>powershell.exe -Command "& {Start-Process powershell.exe -Verb RunAs -ArgumentList '-NoProfile -ExecutionPolicy Bypass -Command \"iex ((Invoke-WebRequest -Uri \"https://raw.githubusercontent.com/PEAKE-Technology-Partners/public-scripts/main/new-build-setup/drivers.ps1\").Content)\"'}"</Path>
+      </RunSynchronousCommand>
       </LogonCommands>
     </component>
   </settings>
