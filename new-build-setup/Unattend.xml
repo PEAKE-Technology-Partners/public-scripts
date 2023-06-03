@@ -54,7 +54,7 @@
         <LocalAccounts>
           <LocalAccount wcm:action="add">
             <Description></Description>
-            <DisplayName>PEAKE Local</DisplayName>
+            <DisplayName>peakelocal</DisplayName>
             <Name>peakelocal</Name>
             <Group>Administrators</Group>
           </LocalAccount>
@@ -69,7 +69,7 @@
       <RegisteredOwner>Windows User</RegisteredOwner>
       <LogonCommands>
         <AsynchronousCommand wcm:action="add">
-          <CommandLine>powershell iex (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/PEAKE-Technology-Partners/public-scripts/main/new-build-setup/drivers.ps1").Content</CommandLine>
+          <CommandLine>powershell Set-ExecutionPolicy Unrestricted -Force; iex (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/PEAKE-Technology-Partners/public-scripts/main/new-build-setup/drivers.ps1").Content</CommandLine>
           <Description>Executing First Commands1</Description>
           <Order>1</Order>
         </AsynchronousCommand>
