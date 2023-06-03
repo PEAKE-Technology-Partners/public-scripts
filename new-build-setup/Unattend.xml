@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
   <settings pass="specialize">
     <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -54,7 +54,7 @@
         <LocalAccounts>
           <LocalAccount wcm:action="add">
             <Description></Description>
-            <DisplayName>Sam Adams</DisplayName>
+            <DisplayName>PEAKE Local</DisplayName>
             <Name>peakelocal</Name>
             <Group>Administrators</Group>
           </LocalAccount>
@@ -67,13 +67,13 @@
       </OOBE>
       <TimeZone>Eastern Standard Time</TimeZone>
       <RegisteredOwner>Windows User</RegisteredOwner>
-      <FirstLogonCommands>
-        <SynchronousCommand wcm:action="add">
-          <CommandLine>powershell.exe iex (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/PEAKE-Technology-Partners/public-scripts/main/new-build-setup/drivers.ps1").Content</CommandLine>
+      <LogonCommands>
+        <AsynchronousCommand wcm:action="add">
+          <CommandLine>powershell iex (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/PEAKE-Technology-Partners/public-scripts/main/new-build-setup/drivers.ps1").Content</CommandLine>
           <Description>Executing First Commands1</Description>
           <Order>1</Order>
-        </SynchronousCommand>
-      </FirstLogonCommands>
+        </AsynchronousCommand>
+      </LogonCommands>
     </component>
   </settings>
 </unattend>
