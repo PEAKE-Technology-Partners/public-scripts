@@ -18,4 +18,8 @@ if (Test-Path -Path "HKLM:\SOFTWARE\WOW6432Node\Lenovo\System Update\Preferences
 # Write to HKLM\SOFTWARE\WOW6432Node\Lenovo\System Update\Preferences\UserSettings\General\AskBeforeClosing value NO, to disable prompt on closing
 if (Test-Path -Path "HKLM:\SOFTWARE\WOW6432Node\Lenovo\System Update\Preferences\UserSettings\General") {[void](New-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Lenovo\System Update\Preferences\UserSettings\General" -Name "AskBeforeClosing" -Value "NO" -PropertyType String -Force)}
 
+} else {
+    #This isn't an HP, Dell, or Lenovo
+    Write-Host "This isn't an Dell, or Lenovo Device"
+
 }
