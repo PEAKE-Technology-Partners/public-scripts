@@ -52,4 +52,4 @@ if ($moduleInstalled) {
     }
 }
 
-Get-WindowsUpdate -Install -AcceptAll -AutoReboot
+Get-WindowsUpdate -Install -AcceptAll
