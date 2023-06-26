@@ -37,4 +37,19 @@ if (Test-Path -Path "HKLM:\SOFTWARE\WOW6432Node\Lenovo\System Update\Preferences
 
 
 Write-Host "Installing Windows Updates"
+
+$moduleName = "PSWindowsUpdate"
+$moduleInstalled = Get-Module -ListAvailable | Where-Object { $_.Name -eq $moduleName }
+
+if ($moduleInstalled) {
+    Write-Host "$moduleName module is already installed."
+} else {
+    try {
+        Install-Module -Name $moduleName -Force -AllowClobber
+        Write-Host "$moduleName module installed successfully."
+    } catch {
+        Write-Host "Failed to install $moduleName module. Error: $_"
+    }
+}
+
 Get-WindowsUpdate -Install -AcceptAll -AutoReboot
