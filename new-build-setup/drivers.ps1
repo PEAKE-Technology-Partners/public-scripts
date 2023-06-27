@@ -58,5 +58,5 @@ if ($moduleInstalled) {
     }
 }
 
-Add-WUServiceManager -MicrosoftUpdate
-Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -AutoReboot -Force
+Add-WUServiceManager -MicrosoftUpdate -Force
+Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -AutoReboot -ForceInstall
