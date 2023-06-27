@@ -1,8 +1,12 @@
+$ProgramDataFolder = $env:ProgramData + "\chocolatey\choco.exe"
 $MODEL = Get-CimInstance -ClassName Win32_BIOS | Select-Object Manufacturer;
 if($MODEL -like '*Dell*') {
 #Install Dell Command Update
 Write-Host "Installing Dell Command Update"
-%programdata%\chocolatey\choco.exe install dellcommandupdate-uwp -y
+Start-Process -FilePath $ProgramDataFolder -ArgumentList "install", "dellcommandupdate-uwp", "-y" -NoNewWindow -Wait
+
+
+Start-Process -FilePath $ProgramDataFolder
 
 #Setting up Parameters for DCU
 Write-Host "Configuring Dell Command Update"
@@ -16,8 +20,9 @@ if (Test-Path -Path "HKLM:\SOFTWARE\Dell\UpdateService\Clients\CommandUpdate\Pre
 
 } elseif ($MODEL -like '*Lenovo*') {
 Write-Host "Installing Lenovo System Update"
+
 #Install Lenovo System Update
-%programdata%\chocolatey\choco.exe install lenovo-thinkvantage-system-update -y
+Start-Process -FilePath $ProgramDataFolder -ArgumentList "install", "lenovo-thinkvantage-system-update", "-y" -NoNewWindow -Wait
 
 Write-Host "Configuring Lenovo System Update"
 # Write to HKLM\SOFTWARE\WOW6432Node\Lenovo\System Update\Preferences\UserSettings\General\MetricsEnabled value NO, to disable metrics
