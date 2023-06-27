@@ -45,6 +45,7 @@ if ($moduleInstalled) {
     Write-Host "$moduleName module is already installed."
 } else {
     try {
+        Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
         Install-Module -Name $moduleName -Force -AllowClobber
         Write-Host "$moduleName module installed successfully."
     } catch {
